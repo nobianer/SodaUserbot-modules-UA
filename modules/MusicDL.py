@@ -28,10 +28,10 @@ class MusicDLMod(loader.Module):
         "404": "🚫 <b>Music </b><code>{}</code><b> not found</b>",
     }
 
-    strings_ru = {
-        "args": "🚫 <b>Не указаны аргументы</b>",
-        "loading": "🔍 <b>Загрузка...</b>",
-        "404": "🚫 <b>Песня </b><code>{}</code><b> не найдена</b>",
+    strings_ua = {
+        "args": "🚫 <b>Не вказані аргументи</b>",
+        "loading": "🔍 <b>Завантаження...</b>",
+        "404": "🚫 <b>Пісню </b><code>{}</code><b> не знайдено</b>",
     }
 
     async def client_ready(self, *_):
@@ -40,7 +40,7 @@ class MusicDLMod(loader.Module):
             suspend_on_error=True,
         )
 
-    @loader.command(ru_doc="<название> - Скачать песню")
+    @loader.command(ru_doc="<название> - Завантажити пісню")
     async def mdl(self, message: Message):
         """<name> - Download track"""
         args = utils.get_args_raw(message)
