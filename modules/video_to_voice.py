@@ -5,12 +5,12 @@ from moviepy.editor import VideoFileClip
 
 @loader.tds
 class VideoToVoiceMod(loader.Module):
-    """Модуль, который преобразует видео в голосовое сообщение."""
+    """Модуль, який перетворює відео на голосове повідомлення."""
     strings = {"name": "video_to_voice"}
 
     @loader.owner
     async def гсcmd(self, message):
-        """Команда гс, преобразующая видео в голосовое сообщение."""
+        """Команда гс, що перетворює відео на голосове повідомлення."""
         await message.delete()  
         
         video_message = await message.get_reply_message()
