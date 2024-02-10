@@ -20,24 +20,24 @@ from .. import loader, utils
 
 @loader.tds
 class TempMailMod(loader.Module):
-    """Временная почта by @blazeftg"""
+    """Тимчасова пошта by @blazeftg"""
 
     strings = {"name": "TempMail"}
 
     async def getmailcmd(self, message):
         """.getmail
-        Получить адрес временной почты
+        Отримати адресу тимчасової пошти
         """
         response = requests.get(
             "https://www.1secmail.com/api/v1/?action=genRandomMailbox"
         )
         await message.edit(
-            "Ваш адрес электронной почты: " + f"<code>{str(response.json()[0])}</code>"
+            "Ваша адреса електронної пошти: " + f"<code>{str(response.json()[0])}</code>"
         )
 
     async def lookmailcmd(self, message):
-        """.lookmail <адрес эл. почты>
-        Получить все сообщения на почте
+        """.lookmail <адреса ел. пошти>
+        Отримати всі повідомлення на пошті
         """
         user_i = utils.get_args_raw(message)
         output_mess = ""
@@ -47,33 +47,33 @@ class TempMailMod(loader.Module):
         try:
             domain = filtered[1]
         except IndexError:
-            output_mess = "Введи адрес почты, ебалай"
+            output_mess = "Введи адресу пошти"
         response = requests.get(
             "https://www.1secmail.com/api/v1/?action=getMessages&login={name}&domain={domain}"
             .format(name=name, domain=domain)
         )
         if response.json() == []:
-            output_mess = "На почте нету писем или же ты не правильно ввёл её адрес"
+            output_mess = "На пошті немає листів або ж ти неправильно ввів її адресу"
         else:
             for i in range(len(response.json())):
                 output_mess += (
-                    "Письмо №"
+                    "Лист №"
                     + f"<code>{str(i+1)}</code>"
-                    + "\nСообщение от: "
+                    + "\nПовідомлення від: "
                     + f"<code>{str(response.json()[i]['from'])}</code>"
                     + "\nТема: "
                     + f"<code>{str(response.json()[i]['subject'])}</code>"
-                    + "\nДата получения: "
+                    + "\nДата отримання: "
                     + f"<code>{str(response.json()[i]['date'])}</code>"
-                    + "\nID письма: "
+                    + "\nID листа: "
                     + f"<code>{str(response.json()[i]['id'])}</code>"
                     + "\n\n"
                 )
         await message.edit(output_mess)
 
     async def readmailcmd(self, message):
-        """.readmail <адрес эл. почты> <ID сообщения>
-        Прочитать сообщение на почте с конкретным ID
+        """.readmail <адреса ел. пошти> <ID повідомлення>
+        Прочитати повідомлення на пошті з конкретним ID
         """
         user_i = utils.get_args_raw(message)
         filtered = user_i.split()
@@ -88,14 +88,14 @@ class TempMailMod(loader.Module):
                 .format(name=name, domain=domain, message_id=id)
             )
             await message.edit(
-                "Дата получения: "
+                "Дата отримання: "
                 + f"<code>{str(response.json()['date'])}</code>"
                 + "\nОт: "
                 + f"<code>{str(response.json()['from'])}</code>"
                 + "\nТема: "
                 + f"<code>{str(response.json()['subject'])}</code>"
-                + "\nТекст письма: "
+                + "\nТекст листа: "
                 + str(response.json()["textBody"])
             )
         except:
-            await message.edit("Неправильный адрес почты или ID сообщения")
+            await message.edit("Неправильна адреса пошти або ID повідомлення")
