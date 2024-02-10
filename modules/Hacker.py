@@ -43,6 +43,15 @@ class HackerMod(loader.Module):
         "processing": 'Processing <emoji document_id="6334710044407368265">🚀</emoji>',
     }
 
+     strings_ua = {
+        "name": "Hacker",
+        "what": (
+            "Відповісти на текст або написати текст <emoji"
+            ' document_id="5467928559664242360">❗️</emoji>'
+        ),
+        "processing": 'Обробка <emoji document_id="6334710044407368265">🚀</emoji>',
+    }
+
     @loader.owner
     async def hackercmd(self, message):
         """Reply to text or write text"""
