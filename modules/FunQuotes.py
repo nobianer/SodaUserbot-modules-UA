@@ -26,10 +26,10 @@ class InlineFunMod(loader.Module):
         ),
     }
 
-    strings_ru = {
-        "where_text": "<emoji document_id='6041914500272098262'>🚫</emoji> <b>Укажи текст для создания стикера</b>",
+    strings_ua = {
+        "where_text": "<emoji document_id='6041914500272098262'>🚫</emoji> <b>Вкажи текст для створення стікера</b>",
         "processing": (
-            "<emoji document_id='6318766236746384900'>🕔</emoji> <b>Обработка...</b>"
+            "<emoji document_id='6318766236746384900'>🕔</emoji> <b>Обробка...</b>"
         ),
     }
 
