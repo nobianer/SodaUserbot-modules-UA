@@ -68,11 +68,11 @@ class AkinatorGame(loader.Module):
             message=message,
             photo=aki_photo,
             text=(
-                "🔮 <b>Задумайте реального или вымышленного персонажа, и нажмите"
-                " начать</b>"
+                "🔮 <b>Задумайте реального або вигаданого персонажа, і натисніть"
+                " почати</b>"
             ),
             reply_markup={
-                "text": "Начать",
+                "text": "Почати",
                 "callback": self.doai,
                 "args": (message,),
             },
@@ -84,7 +84,7 @@ class AkinatorGame(loader.Module):
                 "child_mode",
                 True,
                 lambda: (
-                    "Детский режим. Если включен, то будет сложнее отгадать 18+ героев"
+                    "Дитячий режим. Якщо ввімкнений, то буде складніше відгадати 18+ героїв"
                 ),
                 validator=loader.validators.Boolean(),
             )
@@ -106,7 +106,7 @@ class AkinatorGame(loader.Module):
             reply_markup=[
                 [
                     {
-                        "text": "Да",
+                        "text": "Так",
                         "callback": self.cont,
                         "args": (
                             "Yes",
@@ -114,7 +114,7 @@ class AkinatorGame(loader.Module):
                         ),
                     },
                     {
-                        "text": "Нет",
+                        "text": "Ні",
                         "callback": self.cont,
                         "args": (
                             "No",
@@ -132,7 +132,7 @@ class AkinatorGame(loader.Module):
                 ],
                 [
                     {
-                        "text": "Возможно",
+                        "text": "Можливо",
                         "callback": self.cont,
                         "args": (
                             "Probably",
@@ -140,7 +140,7 @@ class AkinatorGame(loader.Module):
                         ),
                     },
                     {
-                        "text": "Скорее нет",
+                        "text": "Скоріше ні",
                         "callback": self.cont,
                         "args": (
                             "Probably Not",
@@ -166,7 +166,7 @@ class AkinatorGame(loader.Module):
                     photo=gs["absolute_picture_path"],
                     reply_markup=[
                         {
-                            "text": "Это не он",
+                            "text": "Це не він",
                             "callback": self.cont,
                             "args": (
                                 "No",
@@ -177,7 +177,7 @@ class AkinatorGame(loader.Module):
                 )
             else:
                 text = deep_translator.GoogleTranslator(
-                    source="auto", target="ru"
+                    source="auto", target="ua"
                 ).translate(text)
                 emo = random.choice(emojies)
                 await call.edit(
@@ -186,12 +186,12 @@ class AkinatorGame(loader.Module):
                     reply_markup=[
                         [
                             {
-                                "text": "Да",
+                                "text": "Так",
                                 "callback": self.cont,
                                 "args": ("Yes", message),
                             },
                             {
-                                "text": "Нет",
+                                "text": "Ні",
                                 "callback": self.cont,
                                 "args": ("No", message),
                             },
@@ -203,12 +203,12 @@ class AkinatorGame(loader.Module):
                         ],
                         [
                             {
-                                "text": "Возможно",
+                                "text": "Можливо",
                                 "callback": self.cont,
                                 "args": ("Probably", message),
                             },
                             {
-                                "text": "Скорее нет",
+                                "text": "Скоріше ні",
                                 "callback": self.cont,
                                 "args": ("Probably Not", message),
                             },
@@ -217,6 +217,6 @@ class AkinatorGame(loader.Module):
                 )
         except akinator.exceptions.AkinatorQuestionOutOfRangeException:
             await call.edit(
-                text="<b>К сожалению, я не смог угадать данного героя(</b>",
+                text="<b>На жаль, я не зміг вгадати цього героя(</b>",
                 photo=aki_failed,
             )
