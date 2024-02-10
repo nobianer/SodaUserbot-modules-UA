@@ -25,10 +25,10 @@ class MegaMozgMod(loader.Module):
     strings = {
         "name": "MegaMozg",
         "pref": "<b>[MegaMozg]</b> ",
-        "need_arg": "{}Нужен аргумент",
+        "need_arg": "{}Потрібен аргумент",
         "status": "{}{}",
-        "on": "{}Включён",
-        "off": "{}Выключен",
+        "on": "{}Ввімкнено",
+        "off": "{}Вимкнено",
     }
     _db_name = "MegaMozg"
 
@@ -54,7 +54,7 @@ class MegaMozgMod(loader.Module):
         )
 
     async def mozgcmd(self, m: types.Message):
-        ".mozg <on/off/...> - Переключить режим дурачка в чате"
+        ".mozg <on/off/...> - Переключити режим дурника в чаті"
         args = utils.get_args_raw(m)
         if not m.chat:
             return
@@ -77,7 +77,7 @@ class MegaMozgMod(loader.Module):
         return await utils.answer(m, self.strings("off").format(self.strings("pref")))
 
     async def mozgchancecmd(self, m: types.Message):
-        ".mozgchance <int> - Устанвоить шанс 1 к N.\n0 - всегда отвечать"
+        ".mozgchance <int> - Встановити шанс 1 до N.\n0 - завжди відповідати"
         args: str = utils.get_args_raw(m)
         if args.isdigit():
             self.db.set(self._db_name, "chance", int(args))
