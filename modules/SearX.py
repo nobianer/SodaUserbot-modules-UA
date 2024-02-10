@@ -149,11 +149,11 @@ class SearXMod(loader.Module):
         "loading": "<emoji document_id=5381942305081010778>⏳</emoji> Loading...",
     }
 
-    strings_ru = {
-        "cfg_engine": f"Поисковик, все: \n{engines_str}",
-        "cfg_searx_link": "Ссылка на SearX, получить можно на https://searx.space/",
-        "error": "<emoji document_id=5467928559664242360>❗️</emoji> Ошибка: \n{}",
-        "loading": "<emoji document_id=5381942305081010778>⏳</emoji> Загрузка...",
+    strings_ua = {
+        "cfg_engine": f"Пошуковик, все: \n{engines_str}",
+        "cfg_searx_link": "Посилання на SearX, отримати можна на https://searx.space/",
+        "error": "<emoji document_id=5467928559664242360>❗️</emoji> Помилка: \n{}",
+        "loading": "<emoji document_id=5381942305081010778>⏳</emoji> Завантаження...",
     }
 
     def __init__(self):
