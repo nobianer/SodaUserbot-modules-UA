@@ -43,23 +43,23 @@ def get_message_text(message: Message, reply: bool = False):
     return (
         "📷 Фото"
         if message.photo and reply
-        else message.file.emoji + " Стикер"
+        else message.file.emoji + " Стікер"
         if message.sticker and reply
-        else "📹 Видеосообщение"
+        else "📹 Відеоповідомлення"
         if message.video_note and reply
-        else "📹 Видео"
+        else "📹 Відео"
         if message.video and reply
         else "🖼 GIF"
         if message.gif and reply
-        else "📊 Опрос"
+        else "📊 Опитування"
         if message.poll
-        else "📍 Местоположение"
+        else "📍 Місцезнаходження"
         if message.geo
         else "👤 Контакт"
         if message.contact
-        else f"🎵 Голосовое сообщение: {strftime(message.voice.attributes[0].duration)}"
+        else f"🎵 Голосове повідомлення: {strftime(message.voice.attributes[0].duration)}"
         if message.voice
-        else f"🎧 Музыка: {strftime(message.audio.attributes[0].duration)} | {message.audio.attributes[0].performer} - {message.audio.attributes[0].title}"
+        else f"🎧 Музика: {strftime(message.audio.attributes[0].duration)} | {message.audio.attributes[0].performer} - {message.audio.attributes[0].title}"
         if message.audio
         else f"💾 Файл: {message.file.name}"
         if type(message.media) == types.MessageMediaDocument and not get_message_media(message)
@@ -91,14 +91,14 @@ class ShitQuotesMod(loader.Module):
 
     strings = {
         "name": "SQuotes",
-        "no_reply": "<b>[SQuotes]</b> Нет реплая",
-        "processing": "<b>[SQuotes]</b> Обработка...",
-        "api_processing": "<b>[SQuotes]</b> Ожидание API...",
-        "api_error": "<b>[SQuotes]</b> Ошибка API",
-        "loading_media": "<b>[SQuotes]</b> Отправка...",
-        "no_args_or_reply": "<b>[SQuotes]</b> Нет аргументов или реплая",
-        "args_error": "<b>[SQuotes]</b> При обработке аргументов произошла ошибка. Запрос был: <code>{}</code>",
-        "too_many_messages": "<b>[SQuotes]</b> Слишком много сообщений. Максимум: <code>{}</code>"
+        "no_reply": "<b>[SQuotes]</b> Немає реплаю",
+        "processing": "<b>[SQuotes]</b> Обробка...",
+        "api_processing": "<b>[SQuotes]</b> Очікування API...",
+        "api_error": "<b>[SQuotes]</b> Помилка API",
+        "loading_media": "<b>[SQuotes]</b> Надсилання...",
+        "no_args_or_reply": "<b>[SQuotes]</b> Немає аргументів або реплаю",
+        "args_error": "<b>[SQuotes]</b> Під час обробки аргументів сталася помилка. Запит був: <code>{}</code>",
+        "too_many_messages": "<b>[SQuotes]</b> Забагато повідомлень. Максимум: <code>{}</code>"
     }
 
     async def client_ready(self, client: telethon.TelegramClient, db: dict):
@@ -110,7 +110,7 @@ class ShitQuotesMod(loader.Module):
 
     async def qcmd(self, message: types.Message):
         """
-        Сокращение команды .sq
+        Скорочення команди .sq
         """
 
         return await self.sqcmd(message)
@@ -120,7 +120,7 @@ class ShitQuotesMod(loader.Module):
         """
         Использование:
 
-        • .sq <кол-во сообщений> + <реплай> + <!file - скидывает файлом (по желанию)> + <цвет (по желанию)>
+        • .sq <кіл-ть повідомлень> + <реплай> + <!file - надсилає файлом (за бажанням)> + <колір (за бажанням)>
         >>> .sq
         >>> .sq 2 #2d2d2d
         >>> .sq red
@@ -199,8 +199,8 @@ class ShitQuotesMod(loader.Module):
                     except Exception:
                         name, avatar = await self.get_profile_data(message.sender)
                         return (
-                            "Вот блин, произошла ошибка. Возможно на этом канале тебя забанили, и невозможно получить информацию.",
-                            None, message.sender.id, name, avatar, "ошибка :(", None, None, None, None
+                            "От блін, сталася помилка. Можливо на цьому каналі тебе забанили, і неможливо отримати інформацію.",
+                            None, message.sender.id, name, avatar, "помилка :(", None, None, None, None
                         )
                     name, avatar = await self.get_profile_data(user)
                     user_id = user.id
@@ -270,17 +270,17 @@ class ShitQuotesMod(loader.Module):
         """
         Использование:
 
-        • .fsq <@ или ID> + <текст> - квота от юзера с @ или ID + указанный текст
+        • .fsq <@ или ID> + <текст> - квота від юзера з @ або ID + вказаний текст
         >>> .fsq @onetimeusername Вам пизда
 
-        • .fsq <реплай> + <текст> - квота от юзера с реплая + указанный текст
+        • .fsq <реплай> + <текст> - квота від юзера з реплаю + вказаний текст
         >>> .fsq Я лох
 
-        • .fsq <@ или ID> + <текст> + -r + <@ или ID> + <текст> - квота с фейковым реплаем
-        >>> .fsq @Fl1yd спасибо -r @onetimeusername Ты крутой
+        • .fsq <@ или ID> + <текст> + -r + <@ или ID> + <текст> - квота з фейковим реплаем
+        >>> .fsq @Fl1yd спасибо -r @onetimeusername Ти крутий
 
-        • .fsq <@ или ID> + <текст> + -r + <@ или ID> + <текст>; <аргументы> - квота с фейковыми мульти сообщениями
-        >>> .fsq @onetimeusername Пацаны из @sh1tchannel, ждите награду за ахуенный ботнет; @elonmuskplssuckmybigdick чево; @Fl1yd НАШ БОТНЕТ ЛУЧШИЙ -r @elonmuskplssuckmybigdick чево
+        • .fsq <@ или ID> + <текст> + -r + <@ или ID> + <текст>; <аргументи> - квота з фейковими мульти повідомленнями
+        >>> .fsq @onetimeusername Хлопці з @sh1tchannel, чекайте на нагороду за ахуєнний ботнет; @elonmuskplssuckmybigdick чого; @Fl1yd НАШ БОТНЕТ НАЙКРАЩИЙ -r @elonmuskplssuckmybigdick чого
         """
 
         args: str = utils.get_args_raw(message)
@@ -421,7 +421,7 @@ class ShitQuotesMod(loader.Module):
         """
         Использование:
 
-        • .sqset <bg_color/text_color/debug> (<цвет для bg_color/text_color> <True/False для debug>)
+        • .sqset <bg_color/text_color/debug> (<колір для bg_color/text_color> <True/False для debug>)
         >>> .sqset bg_color #2d2d2d
         >>> .sqset debug true
         """
@@ -431,37 +431,37 @@ class ShitQuotesMod(loader.Module):
             return await utils.answer(
                 message,
                 f"<b>[SQuotes]</b> Настройки:\n\n"
-                f"Максимум сообщений (<code>max_messages</code>): {self.settings['max_messages']}\n"
-                f"Цвет квоты (<code>bg_color</code>): {self.settings['bg_color']}\n"
-                f"Цвет текста (<code>text_color</code>): {self.settings['text_color']}\n"
+                f"Максимум повідомлень (<code>max_messages</code>): {self.settings['max_messages']}\n"
+                f"Колір квоти (<code>bg_color</code>): {self.settings['bg_color']}\n"
+                f"Колір тексту (<code>text_color</code>): {self.settings['text_color']}\n"
                 f"Дебаг (<code>debug</code>): {self.settings['debug']}\n\n"
-                f"Настроить можно с помощью <code>.sqset</code> <параметр> <значение> или <code>reset</code>"
+                f"Налаштувати можна за допомогою <code>.sqset</code> <параметр> <значення> або <code>reset</code>"
             )
 
         if args[0] == "reset":
             self.get_settings(True)
             return await utils.answer(
-                message, "<b>[SQuotes - Settings]</b> Настойки квот были сброшены")
+                message, "<b>[SQuotes - Settings]</b> Налаштування квот було скинуто")
 
         if len(args) < 2:
             return await utils.answer(
-                message, "<b>[SQuotes - Settings]</b> Недостаточно аргументов")
+                message, "<b>[SQuotes - Settings]</b> Недостатньо аргументів")
 
         mods = ["max_messages", "bg_color", "text_color", "debug"]
         if args[0] not in mods:
             return await utils.answer(
-                message, f"<b>[SQuotes - Settings]</b> Такого парамерта нет, есть {', '.join(mods)}")
+                message, f"<b>[SQuotes - Settings]</b> Такого параметру немає, є {', '.join(mods)}")
 
         elif args[0] == "debug":
             if args[1].lower() not in ["true", "false"]:
                 return await utils.answer(
-                    message, "<b>[SQuotes - Settings]</b> Такого значения параметра нет, есть true/false")
+                    message, "<b>[SQuotes - Settings]</b> Такого значення параметру немає, є true/false")
             self.settings[args[0]] = args[1].lower() == "true"
 
         elif args[0] == "max_messages":
             if not args[1].isdigit():
                 return await utils.answer(
-                    message, "<b>[SQuotes - Settings]</b> Это не число")
+                    message, "<b>[SQuotes - Settings]</b> Це не число")
             self.settings[args[0]] = int(args[1])
 
         else:
@@ -469,7 +469,7 @@ class ShitQuotesMod(loader.Module):
 
         self.db.set("SQuotes", "settings", self.settings)
         return await utils.answer(
-            message, f"<b>[SQuotes - Settings]</b> Значение параметра {args[0]} было выставлено на {args[1]}")
+            message, f"<b>[SQuotes - Settings]</b> Значення параметру {args[0]} було встановлено на {args[1]}")
 
 
     def get_settings(self, force: bool = False):
