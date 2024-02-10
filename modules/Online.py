@@ -20,7 +20,7 @@ from .. import loader
 
 @loader.tds
 class EternalOnlineMod(loader.Module):
-    """Вечный онлайн, который будет читать сообщения в чатах."""
+    """Вічний онлайн, який буде читати повідомлення в чатах."""
 
     strings = {"name": "Online"}
 
@@ -28,10 +28,10 @@ class EternalOnlineMod(loader.Module):
         self.db = db
 
     async def onlinecmd(self, message):
-        """Включить вечный онлайн"""
+        """Увімкнути вічний онлайн"""
         if not self.db.get("Eternal Online", "status"):
             self.db.set("Eternal Online", "status", True)
-            await message.edit("<b>Вечный онлайн включен</b>")
+            await message.edit("<b>Вічний онлайн увімкнено</b>")
             while self.db.get("Eternal Online", "status"):
                 msg = await message.client.send_message(
                     "me", "Telegram best messenger! 🤩"
@@ -41,7 +41,7 @@ class EternalOnlineMod(loader.Module):
 
         else:
             self.db.set("Eternal Online", "status", False)
-            await message.edit("<b>Вечный онлайн выключен</b>")
+            await message.edit("<b>Вічний онлайн вимкнено</b>")
 
     async def watcher(self, message):
         if self.db.get("Eternal Online", "status"):
