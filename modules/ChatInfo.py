@@ -23,7 +23,7 @@ class ChatInfoMod(loader.Module):
             if not message.is_private:
                 chat = await message.client.get_entity(message.chat_id)
             else:
-                return await message.edit("<b>Это не чат!</b>")
+                return await message.edit("<b>Це не чат!</b>")
 
         chat = await message.client(GetFullChannelRequest(chat.id))
 
