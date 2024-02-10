@@ -23,9 +23,9 @@ from .. import loader, utils
 
 @loader.tds
 class JacquesMod(loader.Module):
-    """Жаконизатор"""
+    """Жаконізатор"""
 
-    strings = {"name": "Жаконизатор", "usage": "Напиши <code>.help Жаконизатор</code>"}
+    strings = {"name": "Жаконізатор", "usage": "Напиши <code>.help Жаконізатор</code>"}
 
     def __init__(self):
         self.name = self.strings["name"]
@@ -35,18 +35,18 @@ class JacquesMod(loader.Module):
             loader.ConfigValue(
                 "font",
                 "https://github.com/Codwizer/ReModules/blob/main/assets/OpenSans-Light.ttf?raw=true",
-                lambda: "добавьте ссылку на нужный вам шрифт",
+                lambda: "додайте посилання на потрібний вам шрифт",
             ),
             loader.ConfigValue(
                 "location",
                 "center",
-                "Можно указать left, right или center",
+                "Можна вказати left, right або center",
                 validator=loader.validators.Choice(["left", "right", "center"]),
             ),
         )
 
     async def ionicmd(self, message):
-        """<реплай на сообщение/свой текст>"""
+        """<реплай на повідомлення/свій текст>"""
         ufr = requests.get(self.config["font"]).content
         f = ufr
 
