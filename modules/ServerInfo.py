@@ -64,13 +64,13 @@ class serverInfoMod(loader.Module):
         ),
     }
 
-    strings_ru = {
+    strings_ua = {
         "loading": (
-            "<emoji document_id=5271897426117009417>🚘</emoji> <b>Загрузка информации о"
-            " сервере...</b>"
+            "<emoji document_id=5271897426117009417>🚘</emoji> <b>Завантаження інформації про"
+            " сервер...</b>"
         ),
         "servinfo": (
-            "<emoji document_id=5271897426117009417>🚘</emoji> <b>Информация о сервере"
+            "<emoji document_id=5271897426117009417>🚘</emoji> <b>Інформація про сервер"
             "</b>:\n\n<emoji document_id=5172854840321114816>💻</emoji> <b>CPU:"
             " {cpu} ядер(-ро) {cpu_load}%</b>\n<emoji"
             " document_id=5174693704799093859>💻</emoji> <b>RAM: {ram} /"
@@ -80,10 +80,10 @@ class serverInfoMod(loader.Module):
             " document_id=5172622400986022463>💻</emoji> <b>OS: {os}</b>\n\n<emoji"
             " document_id=5172839378438849164>💻</emoji> <b>Python: {python}</b>"
         ),
-        "_cls_doc": "Показывает информацию о сервере",
+        "_cls_doc": "Показує інформацію про сервер",
     }
 
-    @loader.command(ru_doc="Показать информацию о сервере")
+    @loader.command(ru_doc="Показати інформацію про сервер")
     async def serverinfo(self, message: Message):
         """Show server info"""
         message = await utils.answer(message, self.strings("loading"))
