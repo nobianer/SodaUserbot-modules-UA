@@ -10,11 +10,11 @@ def register(cb):
     cb(ChatInfoMod())
 
 class ChatInfoMod(loader.Module):
-    """Показывает информацию о чате."""
+    """Показує інформацію про чат."""
     strings = {'name': 'ChatInfo'}
 
     async def chatinfocmd(self, message):
-        """Используй .message <айди чата>; ничего"""
+        """Використовуй .message <айді чату>; нічого"""
         args = utils.get_args_raw(message)
 
         try:
@@ -49,7 +49,7 @@ async def get_info(chat, message):
     first_msg_valid = True if msg_info and msg_info.messages and msg_info.messages[0].id == 1 else False
     creator_valid = True if first_msg_valid and msg_info.users else False
     creator_id = msg_info.users[0].id if creator_valid else None
-    creator_firstname = msg_info.users[0].first_name if creator_valid and msg_info.users[0].first_name is not None else "Удалённый аккаунт"
+    creator_firstname = msg_info.users[0].first_name if creator_valid and msg_info.users[0].first_name is not None else "Видалений акаунт"
     creator_username = msg_info.users[0].username if creator_valid and msg_info.users[0].username is not None else None
     created = msg_info.messages[0].date if first_msg_valid else None
     former_title = msg_info.messages[0].action.title if first_msg_valid and type(msg_info.messages[0].action) is MessageActionChannelMigrateFrom and msg_info.messages[0].action.title != chat_title else None
@@ -69,10 +69,10 @@ async def get_info(chat, message):
     username = chat_obj_info.username if hasattr(chat_obj_info, "username") else None
     bots_list = chat.full_chat.bot_info
     bots = 0
-    slowmode = "Да" if hasattr(chat_obj_info, "slowmode_enabled") and chat_obj_info.slowmode_enabled else "Нет"
+    slowmode = "Так" if hasattr(chat_obj_info, "slowmode_enabled") and chat_obj_info.slowmode_enabled else "Ні"
     slowmode_time = chat.full_chat.slowmode_seconds if hasattr(chat_obj_info, "slowmode_enabled") and chat_obj_info.slowmode_enabled else None
-    restricted = "Да" if hasattr(chat_obj_info, "restricted") and chat_obj_info.restricted else "Нет"
-    verified = "Да" if hasattr(chat_obj_info, "verified") and chat_obj_info.verified else "Нет"
+    restricted = "Так" if hasattr(chat_obj_info, "restricted") and chat_obj_info.restricted else "Ні"
+    verified = "Так" if hasattr(chat_obj_info, "verified") and chat_obj_info.verified else "Ні"
     username = "@{}".format(username) if username else None
     creator_username = "@{}".format(creator_username) if creator_username else None
 
@@ -88,45 +88,45 @@ async def get_info(chat, message):
         for bot in bots_list:
             bots += 1
 
-    caption = "<b>ИНФОРМАЦИЯ О ЧАТЕ:</b>\n\n"
+    caption = "<b>ІНФОРМАЦІЯ ПРО ЧАТ:</b>\n\n"
     caption += f"<b>ID:</b> {chat_obj_info.id}\n"
     if chat_title is not None:
-        caption += f"<b>Название группы:</b> {chat_title}\n"
+        caption += f"<b>Назва групи:</b> {chat_title}\n"
     if former_title is not None:
-        caption += f"<b>Предыдущее название:</b> {former_title}\n"
+        caption += f"<b>Минула назва:</b> {former_title}\n"
     if username is not None:
-        caption += f"<b>Тип группы:</b> Публичный\n"
-        caption += f"<b>Линк:</b> {username}\n"
+        caption += f"<b>Тип групи:</b> Публічна\n"
+        caption += f"<b>Посилання:</b> {username}\n"
     else:
-        caption += f"<b>Тип группы:</b> Приватный\n"
+        caption += f"<b>Тип групи:</b> Приватна\n"
     if creator_username is not None:
-        caption += f"<b>Создатель:</b> <code>{creator_username}</code>\n"
+        caption += f"<b>Власник:</b> <code>{creator_username}</code>\n"
     elif creator_valid:
-        caption += f"<b>Создатель:</b> <code><a href=\"tg://user?id={creator_id}\">{creator_firstname}</a></code>\n"
+        caption += f"<b>Власник:</b> <code><a href=\"tg://user?id={creator_id}\">{creator_firstname}</a></code>\n"
     if created is not None:
-        caption += f"<b>Создан:</b> {created.date().strftime('%b %d, %Y')} - {created.time()}\n"
+        caption += f"<b>Створена:</b> {created.date().strftime('%b %d, %Y')} - {created.time()}\n"
     else:
         caption += f"<b>Создан:</b> {chat_obj_info.date.date().strftime('%b %d, %Y')} - {chat_obj_info.date.time()}\n"
     if messages_viewable is not None:
-        caption += f"<b>Видимые сообщения:</b> {messages_viewable}\n"
+        caption += f"<b>Видимі повідомлення:</b> {messages_viewable}\n"
     if messages_sent:
-        caption += f"<b>Всего сообщений:</b> {messages_sent}\n"
+        caption += f"<b>Всього повідомлень:</b> {messages_sent}\n"
     elif messages_sent_alt:
-        caption += f"<b>Всего сообщений:</b> {messages_sent_alt}\n"
+        caption += f"<b>Всього повідомлень:</b> {messages_sent_alt}\n"
     if members is not None:
-        caption += f"<b>Участников:</b> {members}\n"
+        caption += f"<b>Учасників:</b> {members}\n"
     if admins is not None:
-        caption += f"<b>Админов:</b> {admins}\n"
+        caption += f"<b>Адмінів:</b> {admins}\n"
     if bots_list:
-        caption += f"<b>Ботов:</b> {bots}\n"
+        caption += f"<b>Ботів:</b> {bots}\n"
     if users_online:
-        caption += f"<b>Сейчас онлайн:</b> {users_online}\n"
+        caption += f"<b>Зараз онлайн:</b> {users_online}\n"
     if restrcited_users is not None:
-        caption += f"<b>Ограниченных пользователей:</b> {restrcited_users}\n"
+        caption += f"<b>Обмежених користувачів:</b> {restrcited_users}\n"
     if banned_users is not None:
-        caption += f"<b>Забаненных пользователей:</b> {banned_users}\n"
+        caption += f"<b>Забанених користувачів:</b> {banned_users}\n"
     if group_stickers is not None:
-        caption += f"<b>Стикеры группы:</b> <a href=\"t.me/addstickers/{chat.full_chat.stickerset.short_name}\">{group_stickers}</a>\n"
+        caption += f"<b>Стікери групи:</b> <a href=\"t.me/addstickers/{chat.full_chat.stickerset.short_name}\">{group_stickers}</a>\n"
     caption += "\n"
     caption += f"<b>Слоумод:</b> {slowmode}"
     if hasattr(chat_obj_info, "slowmode_enabled") and chat_obj_info.slowmode_enabled:
@@ -141,9 +141,9 @@ async def get_info(chat, message):
     else:
         caption += ""
     if hasattr(chat_obj_info, "scam") and chat_obj_info.scam:
-        caption += "<b>Скам</b>: да\n\n"
+        caption += "<b>Скам</b>: так\n\n"
     if hasattr(chat_obj_info, "verified"):
-        caption += f"<b>Верифицирован:</b> {verified}\n\n"
+        caption += f"<b>Верифікована:</b> {verified}\n\n"
     if description:
-        caption += f"<b>Описание:</b> \n\n<code>{description}</code>\n"
+        caption += f"<b>Опис:</b> \n\n<code>{description}</code>\n"
     return caption
