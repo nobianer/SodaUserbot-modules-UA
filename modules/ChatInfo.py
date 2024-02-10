@@ -27,7 +27,7 @@ class ChatInfoMod(loader.Module):
 
         chat = await message.client(GetFullChannelRequest(chat.id))
 
-        await message.edit("<b>Загрузка информации...</b>")
+        await message.edit("<b>Завантаження інформації...</b>")
 
         caption = await get_info(chat, message)
         
