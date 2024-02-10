@@ -9,11 +9,11 @@ class ImpMod(loader.Module):
     strings = {'name': 'Impostor?'}
 
     async def impcmd(self, message):
-        """Используй: .imp <@ или текст или реплай>."""
+        """Використовуй: .imp <@ або текст, або реплай>."""
         await self.procces_img(message, "en")
 
     async def ruimpcmd(self, message):
-        """Используй: .ruimp <@ или текст или реплай>."""
+        """Використовуй: .ruimp <@ або текст, або реплай>."""
         await self.procces_img(message, "ru")
 
 
@@ -23,13 +23,13 @@ class ImpMod(loader.Module):
             imps = ['wasn`t the impostor', 'was the impostor']
             text2 = f"\n{remain} impostor(s) remain."
         else:
-            imps = ['не был предателем', 'оказался одним из предалатей']
+            imps = ['не був зрадником', 'виявився одним із зрадників']
             text2 = f"\n{remain} предател{'я' if remain == 2 else 'ь'} остался."
 
         background = requests.get(f"https://fl1yd.su/modules/stuff/impostor{randint(1,22)}.png").content
         font = requests.get("https://fl1yd.su/modules/stuff/font2.ttf").content
         
-        await message.edit("Минуточку...")
+        await message.edit("Хвилинку...")
         reply = await message.get_reply_message()
         args = utils.get_args_raw(message)
         
