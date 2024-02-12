@@ -118,7 +118,7 @@ class ShitQuotesMod(loader.Module):
 
     async def sqcmd(self, message: Message):
         """
-        Использование:
+        Використання:
 
         • .sq <кіл-ть повідомлень> + <реплай> + <!file - надсилає файлом (за бажанням)> + <колір (за бажанням)>
         >>> .sq
