@@ -54,7 +54,7 @@ samplers = ["Euler", "Euler a", "Heun", "DPM++ 2M Karras", "DDIM"]
 # noinspection PyCallingNonCallable
 @loader.tds
 class ProdiaMod(loader.Module):
-    """Image generator based on Prodia API. No API key required."""
+    """Генератор зображень на основі API Prodia. Ключ API не потрібен."""
 
     def __init__(self):
         self.config = loader.ModuleConfig(
