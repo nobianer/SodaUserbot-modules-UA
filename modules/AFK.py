@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 
 @loader.tds
 class AFKMod(loader.Module):
-    """Provides a message saying that you are unavailable"""
+    """Надає повідомлення про те, що ви перебуваєте в AFK-режимі"""
 
     strings = {
         "name": "AFK",
