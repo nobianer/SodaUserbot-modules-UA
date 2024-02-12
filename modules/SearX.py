@@ -139,7 +139,7 @@ for engine in engines:
 
 @loader.tds
 class SearXMod(loader.Module):
-    """Module for multi search"""
+    """Модуль для мульти-пошуку"""
 
     strings = {
         "name": "SearX",
