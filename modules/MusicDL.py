@@ -19,7 +19,7 @@ from .. import loader, utils
 
 @loader.tds
 class MusicDLMod(loader.Module):
-    """Download music"""
+    """Завантажує музику"""
 
     strings = {
         "name": "MusicDL",
