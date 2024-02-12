@@ -32,7 +32,7 @@ from .. import loader, utils
 
 @loader.tds
 class AnimatedQuotesMod(loader.Module):
-    """Simple module to create animated stickers via bot"""
+    """Простий модуль для створення анімованих стікерів через бота"""
 
     strings = {
         "name": "AnimatedQuotes",
