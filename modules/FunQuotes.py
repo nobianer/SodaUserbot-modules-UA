@@ -16,7 +16,7 @@ from .. import loader, utils
 
 @loader.tds
 class InlineFunMod(loader.Module):
-    """Create Fun quotes"""
+    """Створює веселі цитати"""
 
     strings = {
         "name": "FunQuotes",
@@ -34,7 +34,7 @@ class InlineFunMod(loader.Module):
     }
 
     async def glaxcmd(self, message: Message):
-        """<text> - Create Google search quote"""
+        """<text> - Створює Google search цитату"""
         text = utils.get_args_raw(message)
         if not text:
             await message.edit(self.strings("where_text"))
@@ -53,7 +53,7 @@ class InlineFunMod(loader.Module):
             await message.delete()
         
     async def twitcmd(self, message: Message):
-        """<text> - Create Twitter message quote"""
+        """<text> - Створює Twitter пост цитату"""
         text = utils.get_args_raw(message)
         if not text:
             await message.edit(self.strings("where_text"))
@@ -72,7 +72,7 @@ class InlineFunMod(loader.Module):
             await message.delete()
             
     async def frogcmd(self, message: Message):
-        """<text> - Create Frog text quote"""
+        """<text> - Створює Frog цитату"""
         text = utils.get_args_raw(message)
         if not text:
             await message.edit(self.strings("where_text"))
