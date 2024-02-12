@@ -39,7 +39,7 @@ from .. import loader, utils
 
 @loader.tds
 class YouTubeMod(loader.Module):
-    """Download YouTube video"""
+    """Завантажує YouTube відео"""
 
     strings = {
         "name": "YouTube",
