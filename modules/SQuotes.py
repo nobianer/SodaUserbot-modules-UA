@@ -268,7 +268,7 @@ class ShitQuotesMod(loader.Module):
 
     async def fsqcmd(self, message: Message):
         """
-        Использование:
+        Використання:
 
         • .fsq <@ или ID> + <текст> - квота від юзера з @ або ID + вказаний текст
         >>> .fsq @onetimeusername Вам пизда
@@ -419,7 +419,7 @@ class ShitQuotesMod(loader.Module):
 
     async def sqsetcmd(self, message: Message):
         """
-        Использование:
+        Використання:
 
         • .sqset <bg_color/text_color/debug> (<колір для bg_color/text_color> <True/False для debug>)
         >>> .sqset bg_color #2d2d2d
