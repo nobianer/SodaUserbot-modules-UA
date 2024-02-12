@@ -102,7 +102,7 @@ logger = logging.getLogger(__name__)
 
 @loader.tds
 class AcTimeMod(loader.Module):
-    """Module for get account time"""
+    """Модуль для отримання дати створення аккаунта"""
 
     strings = {
         "name": "Account Time",
