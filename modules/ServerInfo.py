@@ -43,7 +43,7 @@ def bytes_to_megabytes(b: int) -> int:
 
 @loader.tds
 class serverInfoMod(loader.Module):
-    """Show server info"""
+    """Показує інформацію про сервер"""
 
     strings = {
         "name": "ServerInfo",
