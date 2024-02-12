@@ -43,7 +43,7 @@ logger = logging.getLogger(__name__)
 
 @loader.tds
 class VoicyMod(loader.Module):
-    """Recognize voice messages, audios, videos and round messages"""
+    """Розпізнавання голосових повідомлень, аудіо, відео та кружечків"""
 
     strings = {
         "name": "Voicy",
