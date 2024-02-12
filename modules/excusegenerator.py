@@ -32,7 +32,7 @@ from .. import loader, utils
 @loader.tds
 class ExcuseGeneratorMod(loader.Module):
     """
-    Ваш преданный помощник!
+    Ваш відданий помічник!
     """
 
     strings = {
@@ -58,7 +58,7 @@ class ExcuseGeneratorMod(loader.Module):
 
     @loader.command()
     async def excuse(self, message):
-        """<имя> - генерирует отмазку."""
+        """<ім'я> - генерує відмазку."""
         args = utils.get_args_raw(message)
         nameo = [
             "Друг",
