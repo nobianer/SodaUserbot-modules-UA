@@ -215,7 +215,7 @@ class SearXMod(loader.Module):
 
     async def searxcmd(self, message):
         """
-         {text} - search text in the internet
+         {текст} - шукає ваші запити в мережі Інтернет
 
         Based on SearX and t.me/fleef code
         """
