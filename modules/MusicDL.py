@@ -42,7 +42,7 @@ class MusicDLMod(loader.Module):
 
     @loader.command(ru_doc="<название> - Завантажити пісню")
     async def mdl(self, message: Message):
-        """<name> - Download track"""
+        """<name> - Завантажити трек"""
         args = utils.get_args_raw(message)
         if not args:
             await utils.answer(message, self.strings("args"))
