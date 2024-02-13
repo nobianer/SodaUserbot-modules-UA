@@ -6,7 +6,7 @@
 # Name: chatgptfree
 # Author: vsecoder
 # Commands:
-# .chatgptfree | .contextgpt
+# .gpt | .contextgpt
 # ---------------------------------------------------------------------------------
 
 """
