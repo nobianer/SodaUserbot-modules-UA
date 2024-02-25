@@ -74,7 +74,7 @@ class PCManagerMod(loader.Module):
 
     @loader.command()
     async def tutor(self, message: Message):
-        """- туторіал з ідключення"""
+        """- туторіал з підключення"""
         await utils.answer(
             message,
             (
