@@ -133,7 +133,7 @@ async def get_info(chat, message):
         caption += f", {slowmode_time} секунд\n"
     else:
         caption += "\n"
-    caption += f"<b>Ограничен:</b> {restricted}\n"
+    caption += f"<b>Обмежений:</b> {restricted}\n"
     if chat_obj_info.restricted:
         caption += f"> Платформа: {chat_obj_info.restriction_reason[0].platform}\n"
         caption += f"> Причина: {chat_obj_info.restriction_reason[0].reason}\n"
