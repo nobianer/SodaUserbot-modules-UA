@@ -119,9 +119,9 @@ class AcTimeMod(loader.Module):
         self.config = loader.ModuleConfig(
             "answer_text",
             (
-                "⏳ This account: {0}\n🕰 A registered: {1}\n\nP.S. The module script is"
-                " trained with the number of requests from different ids, so the data"
-                " can be refined"
+                "⏳ Цей акаунт: {0}\n🕰 Створено: {1}\n\nP.S. Скрипт модуля"
+                " тренувався на кількості запитів з різних ідентифікаторів, тому дані"
+                " тому він буде допрацьовуватися"
             ),
             lambda m: self.strings("cfg_answer_text", m),
         )
@@ -143,8 +143,8 @@ class AcTimeMod(loader.Module):
     @loader.ratelimit
     async def actimecmd(self, message):
         """
-         - get the account registration date and time [beta]
-        P.S. You can also send a command in response to a message
+         - отримати дату і час реєстрації облікового запису [бета-версія].
+        P.S. Ви також можете відправити команду у відповідь на повідомлення
         """
         try:
             interpolation = Function()
