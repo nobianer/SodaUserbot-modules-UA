@@ -5,8 +5,7 @@
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 # 👤 https://t.me/hikamoru
 
-# meta developer: @hikamorumods
-# meta banner: https://raw.githubusercontent.com/AmoreForever/assets/master/Funquotes.jpg
+# meta developer: @nobianermodules
 __version__ = (1, 0, 0)
 
 from telethon.tl.types import Message
