@@ -1,5 +1,3 @@
-# meta developer: @nobianermodules
-
 from .. import loader, utils
 from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantsRequest
 from telethon.tl.functions.messages import GetHistoryRequest
