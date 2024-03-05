@@ -5,7 +5,6 @@
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 # 👤 https://t.me/hikamoru
 
-# meta developer: @nobianermodules
 __version__ = (1, 0, 0)
 
 from telethon.tl.types import Message
