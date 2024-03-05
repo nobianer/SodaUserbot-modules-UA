@@ -20,9 +20,7 @@
     This program is free software; you can redistribute it and/or modify 
 
 """
-# meta developer: @vsecoder_m
-# meta pic: https://img.icons8.com/fluency/344/timer.png
-# meta banner: https://chojuu.vercel.app/api/banner?img=https://img.icons8.com/fluency/344/timer.png&title=Account%20Time&description=Get%20the%20account%20registration%20date%20and%20time!
+# meta developer: @nobianermodules
 
 __version__ = (2, 5, 0)
 
