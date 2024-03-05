@@ -20,7 +20,6 @@
     This program is free software; you can redistribute it and/or modify 
 
 """
-# meta developer: @nobianermodules
 
 version = (1, 0, 0)
 
