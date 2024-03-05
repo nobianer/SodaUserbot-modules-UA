@@ -5,7 +5,6 @@
 # ---------------------------------------------------------------------------------
 # Name: afk
 # Description: Provides a message saying that you are unavailable
-# meta developer: @nobianermodules
 # Commands:
 # .afk | .unafk
 # ---------------------------------------------------------------------------------
@@ -26,6 +25,8 @@
 
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# meta developer: @nobianermodules
 
 import datetime
 import logging
