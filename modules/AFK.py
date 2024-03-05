@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------------------------
 # Name: afk
 # Description: Provides a message saying that you are unavailable
-# Author: HitaloSama
+# meta developer: @nobianermodules
 # Commands:
 # .afk | .unafk
 # ---------------------------------------------------------------------------------
