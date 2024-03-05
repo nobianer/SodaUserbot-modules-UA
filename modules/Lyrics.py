@@ -19,9 +19,7 @@ __version__ = (2, 6, 1)
 """
 # scope: inline_content
 # requires: requests bs4 spotipy
-# meta developer: @morisummermods
-# meta pic: https://i.imgur.com/pViqDsI.png
-# meta banner: https://i.imgur.com/AIjsMoV.jpg
+# meta developer: @nobianermodules
 
 import logging
 import re
