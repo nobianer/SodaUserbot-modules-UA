@@ -1,25 +1,4 @@
-# ---------------------------------------------------------------------------------
-#  /\_/\  🌐 This module was loaded through https://t.me/hikkamods_bot
-# ( o.o )  🔐 Licensed under the Copyleft license.
-#  > ^ <   ⚠️ Owner of heta.hikariatama.ru doesn't take any responsibilities or intellectual property rights regarding this script
-# ---------------------------------------------------------------------------------
-# Name: accounttime
-# Author: vsecoder
-# Commands:
-# .actime
-# ---------------------------------------------------------------------------------
-
-"""
-                                _             
-  __   _____  ___  ___ ___   __| | ___ _ __   
-  \ \ / / __|/ _ \/ __/ _ \ / _` |/ _ \ '__|  
-   \ V /\__ \  __/ (_| (_) | (_| |  __/ |     
-    \_/ |___/\___|\___\___/ \__,_|\___|_|     
-
-    Copyleft 2022 t.me/vsecoder                                                            
-    This program is free software; you can redistribute it and/or modify 
-
-"""
+# meta developer: @nobianermodules
 
 __version__ = (2, 5, 0)
 
