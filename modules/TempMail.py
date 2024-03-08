@@ -90,7 +90,7 @@ class TempMailMod(loader.Module):
             await message.edit(
                 "Дата отримання: "
                 + f"<code>{str(response.json()['date'])}</code>"
-                + "\nОт: "
+                + "\nВід: "
                 + f"<code>{str(response.json()['from'])}</code>"
                 + "\nТема: "
                 + f"<code>{str(response.json()['subject'])}</code>"
