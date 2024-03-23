@@ -22,7 +22,7 @@ class ChatGPTfreeMod(loader.Module):
         "name": "ChatGPTfree",
         "loading": "🔄 Ваш запит обробляється...",
         "no_args": "🚫 Не вказано текст для обробки!",
-        "start_text": "<b>👤 Ваш запит:</b> {args}\n\n<b>🤖 ChatGPT:</b>\n",
+        "start_text": "<b>👤 Ваш запит:</b> {args}\n\n<b><emoji document_id=5355061947316321722>🤖</emoji> ChatGPT:</b>\n",
         "context_text": "❕ Створився новий діалог. Попередні запити видалено.",
     }
 
