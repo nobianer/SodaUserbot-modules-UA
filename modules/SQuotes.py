@@ -1,4 +1,4 @@
-# API/Module authors: @Fl1yd, @spypm
+# meta developer: @nobianermodules
 # Thank for.... - no1!!, no1 helped us, we did everything ourselves
 # But we took one method of get messages from the Mishase's and Droox's modules
 
