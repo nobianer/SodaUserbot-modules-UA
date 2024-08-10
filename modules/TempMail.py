@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------------------------
 # Name: TempMail
 # Description: Временная почта by @blazeftg
-# Author: blazedzn
+# meta developer: @nobianermodules
 # Commands:
 # .getmail | .lookmail | .readmail
 # ---------------------------------------------------------------------------------
