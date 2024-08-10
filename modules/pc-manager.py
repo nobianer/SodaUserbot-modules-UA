@@ -4,7 +4,7 @@
 #  > ^ <   ⚠️ Owner of heta.hikariatama.ru doesn't take any responsibilities or intellectual property rights regarding this script
 # ---------------------------------------------------------------------------------
 # Name: pcmanager
-# Author: Den4ikSuperOstryyPer4ik
+# Author: nobianer
 # Commands:
 # .addbot | .tutor   | .pcoff | .pcreboot   | .pcinfo 
 # .pcip   | .pcscrin | .pcweb | .pcwebscrin | .pcalert
@@ -35,7 +35,7 @@ __version__ = (1, 0, 0)
 #                                    🔒 Licensed under the GNU AGPLv3
 #                                 https://www.gnu.org/licenses/agpl-3.0.html
 #
-# meta developer: @AstroModules
+# meta developer: @nobianermodules
 
 from telethon.tl.types import Message
 
