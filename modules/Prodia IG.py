@@ -9,7 +9,7 @@
 # (c) 2023 — licensed under Apache 2.0 — https://www.apache.org/licenses/LICENSE-2.0
 
 # meta pic: https://img.icons8.com/?size=512&id=17387&format=png
-# meta developer: @mm_mods
+# meta developer: @nobianermodules
 
 __version__ = "1.0"
 
