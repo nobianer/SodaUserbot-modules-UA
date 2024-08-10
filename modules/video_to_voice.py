@@ -1,4 +1,4 @@
-# meta developer: @modwini
+# meta developer: @nobianermodules
 import os
 from .. import loader
 from moviepy.editor import VideoFileClip
