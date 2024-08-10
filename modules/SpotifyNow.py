@@ -10,7 +10,7 @@ __version__ = (1, 0, 3)
 
 # meta pic: https://static.dan.tatar/spotify_icon.png
 # meta banner: https://mods.hikariatama.ru/badges/spotify.jpg
-# meta developer: @hikarimods
+# meta developer: @nobianermodules
 # scope: hikka_only
 # scope: hikka_min 1.2.10
 # requires: spotipy Pillow
