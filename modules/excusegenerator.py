@@ -22,7 +22,7 @@
 #             https://www.gnu.org/licenses/agpl-3.0.html
 #
 # meta banner: https://raw.githubusercontent.com/dorotorothequickend/DorotoroModules/main/banners/DorotoroExcuseGenerator.png
-# meta developer: @DorotoroMods
+# meta developer: @nobianermodules
 
 import random
 
