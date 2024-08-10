@@ -1,3 +1,5 @@
+# meta developer: @nobianermodules
+
 import io, requests
 from .. import loader, utils
 from random import choice, randint
