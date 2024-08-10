@@ -1,13 +1,13 @@
 # ---------------------------------------------------------------------------------
 # Name: Жаконизатор
 # Description: Жаконизатор
-# Author: @hikka_mods
+# Author: nobianer
 # ---------------------------------------------------------------------------------
 
 # 🔒    Licensed under the GNU AGPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
-# meta developer: @hikka_mods
+# meta developer: @nobianermodules
 # scope: Жаконизатор
 # scope: Жаконизатор 0.0.1
 # ---------------------------------------------------------------------------------
