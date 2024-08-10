@@ -14,7 +14,7 @@ __version__ = (0, 1, 29)
 # 🔒 Licensed under the GNU GPLv3
 # 🌐 https://www.gnu.org/licenses/gpl-3.0.html
 
-# meta developer: @apodiktum_modules
+# meta developer: @nobianermodules
 # meta banner: https://t.me/file_dumbster/11
 # meta pic: https://t.me/file_dumbster/13
 
