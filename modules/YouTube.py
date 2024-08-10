@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------------------------
 # Name: youtube
 # Description: Download YouTube video
-# Author: hikariatama
+# meta developer: @nobianermodules
 # Commands:
 # .yt
 # ---------------------------------------------------------------------------------
