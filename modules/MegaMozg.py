@@ -5,7 +5,7 @@
 # ---------------------------------------------------------------------------------
 # Name: MegaMozg
 # Description: No description
-# Author: KeyZenD
+# meta developer: @nobianermodules
 # Commands:
 # .mozg | .mozgchance
 # ---------------------------------------------------------------------------------
