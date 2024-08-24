@@ -21,8 +21,8 @@ class CurrencyRateMod(loader.Module):
             if usd_rate and eur_rate:
                 usd_to_uah = usd_rate["rate"]
                 eur_to_uah = eur_rate["rate"]
-                result = (f"💵 Курс валюти:\n\n"
-                          f"💲 1 USD = {usd_to_uah} UAH\n"
+                result = (f"💰 Курс валюти:\n\n"
+                          f"💵 1 USD = {usd_to_uah} UAH\n"
                           f"💶 1 EUR = {eur_to_uah} UAH")
             else:
                 result = "Не вдалося отримати дані щодо курсу"
