@@ -26,3 +26,4 @@ video_to_voice
 Жаконизатор
 wikipedia
 CurrencyRate
+VideoDownloader
