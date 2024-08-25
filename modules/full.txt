@@ -25,3 +25,4 @@ pc-manager
 video_to_voice
 Жаконизатор
 wikipedia
+CurrencyRate
