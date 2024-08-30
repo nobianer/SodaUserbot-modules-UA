@@ -27,3 +27,4 @@ video_to_voice
 wikipedia
 CurrencyRate
 VideoDownloader
+SteamStatus
