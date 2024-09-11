@@ -3,12 +3,9 @@
 version = (1, 0, 0)
 
 import asyncio
-
-from telethon import functions
+import re
 from telethon.tl.types import Message
-
 from .. import loader, utils
-
 
 @loader.tds
 class ChatGPTfreeMod(loader.Module):
@@ -42,7 +39,7 @@ class ChatGPTfreeMod(loader.Module):
         delete: bool = False,
         ignore_answer: bool = False,
     ):
-        """Отправляет сообщение и возращает ответ"""
+        """Отправляет сообщение и возвращает ответ"""
         async with self.client.conversation(user_id) as conv:
             msg = await conv.send_message(text)
             while True:
@@ -61,6 +58,16 @@ class ChatGPTfreeMod(loader.Module):
                     continue
                 return response
 
+    def clean_response(self, text: str) -> str:
+        """
+        Видаляє рекламні посилання під відповідями бота.
+        """
+        cleaned_text = re.sub(r'[\u4e00-\u9fff]+', '', text)  
+        cleaned_text = re.sub(r'\(https?:\/\/\S+\)', '', cleaned_text)  
+        cleaned_text = cleaned_text.replace("？AI。", "")  
+        cleaned_text = cleaned_text.replace("：", "")  
+        return cleaned_text.strip()
+
     async def gptcmd(self, message: Message):
         """
         {text} - опрацювати текст через ChatGPT
@@ -75,7 +82,10 @@ class ChatGPTfreeMod(loader.Module):
             args, self.gpt_free, mark_read=True, delete=True, ignore_answer=False
         )
 
-        text = self.strings["start_text"].format(args=args) + response.text.replace(
+        # Очищаем ответ от китайских символов, ссылок и специфичных фраз
+        cleaned_response = self.clean_response(response.text)
+
+        text = self.strings["start_text"].format(args=args) + cleaned_response.replace(
             "/context", "<code>.contextgpt</code>"
         )
 
