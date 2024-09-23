@@ -28,3 +28,4 @@ wikipedia
 CurrencyRate
 VideoDownloader
 SteamStatus
+Moderation
