@@ -29,6 +29,14 @@ class ModerationMod(loader.Module):
         "invalid_punishment": "❌ Невірний аргумент. Використайте 'mute' або 'ban'.",
         "punishment_duration_set": "✅ Покарання {punishment} встановлено на {duration}.",
         "invalid_duration": "❌ Невірний формат тривалості. Використайте щось накшталт: 1d, 2h, 3m, 4s",
+        "welcome_msg_set": "✅ Привітальне повідомлення встановлено.",
+        "goodbye_msg_set": "✅ Прощальне повідомлення встановлено.",
+        "welcome_enabled": "✅ Привітання нових користувачів активовано.",
+        "welcome_disabled": "❌ Привітання нових користувачів деактивовано.",
+        "goodbye_enabled": "✅ Прощання активовано.",
+        "goodbye_disabled": "❌ Прощання деактивовано.",
+        "welcome": "👋 Ласкаво просимо, {user}!",
+        "goodbye": "👋 Прощавай, {user}!",
     }
 
     def __init__(self):
@@ -52,7 +60,27 @@ class ModerationMod(loader.Module):
                 "punishment_duration",
                 None,
                 "Тривалість покарання (None - назавжди)"
-            )
+            ),
+            loader.ConfigValue(
+                "welcome_enabled",
+                False,
+                "Активувати або деактивувати привітання нових користувачів"
+            ),
+            loader.ConfigValue(
+                "goodbye_enabled",
+                False,
+                "Активувати або деактивувати прощавальні повідомлення"
+            ),
+            loader.ConfigValue(
+                "welcome_msg",
+                "👋 Ласкаво просимо, {user}!",
+                "Привітальне повідомлення"
+            ),
+            loader.ConfigValue(
+                "goodbye_msg",
+                "👋 Прощавай, {user}!",
+                "Прощавальне повідомлення"
+            ),
         )
         self.warnings = {}  
 
@@ -71,6 +99,22 @@ class ModerationMod(loader.Module):
     @property
     def punishment_duration(self):
         return self.config["punishment_duration"]
+    
+    @property
+    def welcome_enabled(self):
+        return self.config["welcome_enabled"]
+
+    @property
+    def goodbye_enabled(self):
+        return self.config["goodbye_enabled"]
+
+    @property
+    def welcome_msg(self):
+        return self.config["welcome_msg"]
+
+    @property
+    def goodbye_msg(self):
+        return self.config["goodbye_msg"]
 
     def parse_duration(self, duration_str):
         """Парсинг тривалості покарання (1d, 1h, та ін.)"""
@@ -96,6 +140,54 @@ class ModerationMod(loader.Module):
             return await self.client.get_entity(args)
         else:
             return None
+        
+    async def user_joined(self, event):
+        """Обробляє вступ нових користувачів та надсилає привітальне повідомлення"""
+        if not self.welcome_enabled:
+            return
+        await event.reply(self.welcome_msg.format(user=event.user.first_name))
+
+    async def user_left(self, event):
+        """Обробляє вихід користувачів з чату та надсилає прощавальне повідомлення"""
+        if not self.goodbye_enabled:
+            return
+        await event.reply(self.goodbye_msg.format(user=event.user.first_name))
+
+    async def watcher(self, event):
+        """Відслідковування вступу та виходу користувачів"""
+        if event.user_joined:
+            await self.user_joined(event)
+        elif event.user_left:
+            await self.user_left(event)
+    
+    async def welcomecmd(self, message: Message):
+       """Активувати або деактивувати привітання нових користувачів"""
+       self.config["welcome_enabled"] = not self.welcome_enabled
+       status = "активовані" if self.welcome_enabled else "деактивовані"
+       await utils.answer(message, f"✅ Привітальні повідомлення {status}.")
+
+    async def goodbyecmd(self, message: Message):
+       """Активувати або деактивувати прощавальні повідомлення"""
+       self.config["goodbye_enabled"] = not self.goodbye_enabled
+       status = "активовані" if self.goodbye_enabled else "деактивовані"
+       await utils.answer(message, f"✅ Прощавальні повідомлення {status}.")
+
+    
+    async def setwelcomemsgcmd(self, message: Message):
+        """Встановити привітальне повідомлення"""
+        args = utils.get_args_raw(message)
+        if not args:
+            return await utils.answer(message, "❌ Вкажіть текст для повідомлення.")
+        self.config["welcome_msg"] = args
+        await utils.answer(message, self.strings["welcome_msg_set"])
+
+    async def setgoodbyemsgcmd(self, message: Message):
+        """Встановити прощавальне повідомлення"""
+        args = utils.get_args_raw(message)
+        if not args:
+            return await utils.answer(message, "❌ Вкажіть текст для повідомлення.")
+        self.config["goodbye_msg"] = args
+        await utils.answer(message, self.strings["goodbye_msg_set"])
 
     async def bancmd(self, message: Message):
         """Заблоувати користувача в чаті"""
@@ -197,6 +289,19 @@ class ModerationMod(loader.Module):
         user_id = user.id
         self.warnings[user_id] = 0  
         await utils.answer(message, self.strings["unwarn_success"].format(user=user.first_name))
+
+    async def warnlistcmd(self, message: Message):
+        """Посмотреть количество предупреждений пользователя"""
+        args = utils.get_args_raw(message).split()
+        user = await self.get_user(message, args[0] if not message.is_reply else "")
+
+        if not user:
+            return await utils.answer(message, self.strings["no_user"])
+
+        user_id = user.id
+        warn_count = self.warnings.get(user_id, 0)  
+
+        await utils.answer(message, f"⚠️ У користувача {user.first_name} {warn_count} попереджень.") 
 
     async def setwarncountcmd(self, message: Message):
         """Встановити ліміт попереджень для покарання"""
