@@ -60,12 +60,16 @@ class ChatGPTfreeMod(loader.Module):
 
     def clean_response(self, text: str) -> str:
         """
-        Видаляє рекламні посилання під відповідями бота.
+        Удаляет нежелательные китайские символы, ссылки и специфичные фразы из ответа.
         """
-        cleaned_text = re.sub(r'[\u4e00-\u9fff]+', '', text)  
-        cleaned_text = re.sub(r'\(https?:\/\/\S+\)', '', cleaned_text)  
-        cleaned_text = cleaned_text.replace("？AI。", "")  
-        cleaned_text = cleaned_text.replace("：", "")  
+        # Убираем китайские иероглифы, ссылки, фразы "？AI。" и символы "："
+        cleaned_text = re.sub(r'[\u4e00-\u9fff]+', '', text)  # Удаление китайских символов
+        cleaned_text = re.sub(r'\(https?:\/\/\S+\)', '', cleaned_text)  # Удаление ссылок
+        cleaned_text = cleaned_text.replace("？AI。", "")  # Удаление фразы "？AI。"
+        cleaned_text = cleaned_text.replace("：", "")  # Удаление символа "："
+        cleaned_text = cleaned_text.replace("AI", "")
+        cleaned_text = cleaned_text.replace("？", "")
+        cleaned_text = cleaned_text.replace("！", "")
         return cleaned_text.strip()
 
     async def gptcmd(self, message: Message):
