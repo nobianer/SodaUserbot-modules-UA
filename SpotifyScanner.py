@@ -7,19 +7,20 @@ import re
 from telethon.tl.types import Message
 from .. import loader, utils
 
+
 @loader.tds
-class ChatGPTfreeMod(loader.Module):
+class SpotifyScannerMod(loader.Module):
     """
-    Безкоштовний модуль для ChatGPT
-    https://t.me/Free_of_ChatGPT_bot
+    Модуль для виявлення російських артистів Spotify
+    https://t.me/spotifyscannerbot
     Спочатку запустіть бота і вимкніть сповіщення
     """
 
     strings = {
-        "name": "ChatGPTfree",
+        "name": "SpotifyScanner",
         "loading": "<emoji document_id=5325792861885570739>🔄</emoji> Ваш запит обробляється...",
         "no_args": "<emoji document_id=5210952531676504517>🚫</emoji> Не вказано текст для обробки!",
-        "start_text": "<b>👤 Ваш запит:</b> {args}\n\n<b><emoji document_id=5355061947316321722>🤖</emoji> ChatGPT:</b>\n",
+        "start_text": "<b>Ваш запит:</b> {args}\n\n<b>Відповідь:</b>\n",
         "context_text": "❕ Створився новий діалог. Попередні запити видалено.",
     }
 
@@ -29,7 +30,7 @@ class ChatGPTfreeMod(loader.Module):
     async def client_ready(self, client, db):
         self.client = client
         self.db = db
-        self.gpt_free = "@Free_of_ChatGPT_bot"
+        self.gpt_free = "@spotifyscannerbot"
 
     async def message_q(
         self,
@@ -39,7 +40,7 @@ class ChatGPTfreeMod(loader.Module):
         delete: bool = False,
         ignore_answer: bool = False,
     ):
-        """Отправляет сообщение и возвращает ответ"""
+        """Надсилає повідомлення і отримує відповідь"""
         async with self.client.conversation(user_id) as conv:
             msg = await conv.send_message(text)
             while True:
@@ -57,24 +58,19 @@ class ChatGPTfreeMod(loader.Module):
                 if "Очікування відповіді" in response.text:
                     continue
                 return response
-
+            
     def clean_response(self, text: str) -> str:
         """
         Удаляет нежелательные китайские символы, ссылки и специфичные фразы из ответа.
         """
-        # Убираем китайские иероглифы, ссылки, фразы "？AI。" и символы "："
-        cleaned_text = re.sub(r'[\u4e00-\u9fff]+', '', text)  # Удаление китайских символов
-        cleaned_text = re.sub(r'\(https?:\/\/\S+\)', '', cleaned_text)  # Удаление ссылок
-        cleaned_text = cleaned_text.replace("？AI。", "")  # Удаление фразы "？AI。"
-        cleaned_text = cleaned_text.replace("：", "")  # Удаление символа "："
-        cleaned_text = cleaned_text.replace("AI", "")
-        cleaned_text = cleaned_text.replace("？", "")
-        cleaned_text = cleaned_text.replace("！", "")
+        cleaned_text = re.sub(r'[\u4e00-\u9fff]+', '', text)  
+        cleaned_text = re.sub(r'\(https?:\/\/\S+\)', '', cleaned_text)  
+        cleaned_text = cleaned_text.replace("Скарги або пропозиції - @ukbotsup", "")  
         return cleaned_text.strip()
 
-    async def gptcmd(self, message: Message):
+    async def scancmd(self, message: Message):
         """
-        {text} - опрацювати текст через ChatGPT
+        {text} - перевірити артиста
         """
         args = utils.get_args_raw(message)
 
@@ -86,7 +82,6 @@ class ChatGPTfreeMod(loader.Module):
             args, self.gpt_free, mark_read=True, delete=True, ignore_answer=False
         )
 
-        # Очищаем ответ от китайских символов, ссылок и специфичных фраз
         cleaned_response = self.clean_response(response.text)
 
         text = self.strings["start_text"].format(args=args) + cleaned_response.replace(
@@ -94,12 +89,3 @@ class ChatGPTfreeMod(loader.Module):
         )
 
         return await utils.answer(message, text)
-
-    async def contextgptcmd(self, message: Message):
-        """
-        - скинути діалог і розпочати новий
-        """
-        await self.message_q(
-            "/context", self.gpt_free, mark_read=True, delete=True, ignore_answer=True
-        )
-        return await utils.answer(message, self.strings["context_text"])
