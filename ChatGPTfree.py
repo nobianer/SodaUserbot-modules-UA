@@ -62,14 +62,14 @@ class ChatGPTfreeMod(loader.Module):
         """
         Удаляет нежелательные китайские символы, ссылки и специфичные фразы из ответа.
         """
-        # Убираем китайские иероглифы, ссылки, фразы "？AI。" и символы "："
-        cleaned_text = re.sub(r'[\u4e00-\u9fff]+', '', text)  # Удаление китайских символов
-        cleaned_text = re.sub(r'\(https?:\/\/\S+\)', '', cleaned_text)  # Удаление ссылок
-        cleaned_text = cleaned_text.replace("？AI。", "")  # Удаление фразы "？AI。"
-        cleaned_text = cleaned_text.replace("：", "")  # Удаление символа "："
+        cleaned_text = re.sub(r'[\u4e00-\u9fff]+', '', text)  
+        cleaned_text = re.sub(r'\(https?:\/\/\S+\)', '', cleaned_text)  
+        cleaned_text = cleaned_text.replace("？AI。", "")  
+        cleaned_text = cleaned_text.replace("：", "")  
         cleaned_text = cleaned_text.replace("AI", "")
         cleaned_text = cleaned_text.replace("？", "")
         cleaned_text = cleaned_text.replace("！", "")
+        cleaned_text = cleaned_text.replace("/", "")
         return cleaned_text.strip()
 
     async def gptcmd(self, message: Message):
@@ -86,7 +86,6 @@ class ChatGPTfreeMod(loader.Module):
             args, self.gpt_free, mark_read=True, delete=True, ignore_answer=False
         )
 
-        # Очищаем ответ от китайских символов, ссылок и специфичных фраз
         cleaned_response = self.clean_response(response.text)
 
         text = self.strings["start_text"].format(args=args) + cleaned_response.replace(
